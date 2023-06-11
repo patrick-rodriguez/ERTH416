@@ -47,6 +47,11 @@ humidity = []
 temperature = []
 time = []
 
+pm10_concentration_no_smoking = []
+pm25_concentration_no_smoking = []
+pm100_concentration_no_smoking = []
+time_no_smoking = []
+
 with open(csv_file, "r") as f:
     data = csv.reader(f)
     next(data)  # read past header line
@@ -55,6 +60,12 @@ with open(csv_file, "r") as f:
         pm10_concentration.append(int(row[0]))
         pm25_concentration.append(int(row[1]))
         pm100_concentration.append(int(row[2]))
+
+        if int(row[2]) <= 10:
+            pm10_concentration_no_smoking.append(int(row[0]))
+            pm25_concentration_no_smoking.append(int(row[1]))
+            pm100_concentration_no_smoking.append(int(row[2]))
+
         pressure.append(float(row[3]))
         humidity.append(float(row[4]))
         temperature.append(float(row[5]))
@@ -64,6 +75,10 @@ with open(csv_file, "r") as f:
 starting_time = datetime(2023, 6, 9, 18, 45, 30, 0)  # start time for data collection
 for i in range(699):
     time.append((starting_time + timedelta(seconds=30.8571428571 * i)))
+    if i <= 625:
+        time_no_smoking.append((starting_time + timedelta(seconds=37.0497427101 * i)))
+
+print(len(time_no_smoking), len(pm100_concentration_no_smoking))
 
 ax1 = plt.subplot()
 plt.title("Particle Matter Concentration Over Time (18:45 - 0:45)")
@@ -79,7 +94,7 @@ plt.xticks(rotation=45)
 plt.xlim(starting_time - timedelta(seconds=1), starting_time + timedelta(seconds=30.8571428571 * 699) -
          timedelta(seconds=1))
 plt.legend()
-plt.savefig(r"C:\Users\patri\OneDrive\Desktop\ERTH416 Assignment 4 Graphs\pmconcentration")
+plt.savefig(r"C:\Users\patri\OneDrive\Desktop\ERTH416\ERTH416\Assignment 4\pmconcentration_no_smoking")
 plt.show()
 
 ax2 = plt.subplot()
@@ -94,7 +109,7 @@ plt.xticks(rotation=45)
 plt.xlim(starting_time - timedelta(seconds=1), starting_time + timedelta(seconds=30.8571428571 * 699) -
          timedelta(seconds=1))
 plt.legend()
-plt.savefig(r"C:\Users\patri\OneDrive\Desktop\ERTH416 Assignment 4 Graphs\temperature")
+plt.savefig(r"C:\Users\patri\OneDrive\Desktop\ERTH416\ERTH416\Assignment 4\temperature")
 plt.show()
 
 ax3 = plt.subplot()
@@ -109,7 +124,7 @@ plt.xticks(rotation=45)
 plt.xlim(starting_time - timedelta(seconds=1), starting_time + timedelta(seconds=30.8571428571 * 699) -
          timedelta(seconds=1))
 plt.legend()
-plt.savefig(r"C:\Users\patri\OneDrive\Desktop\ERTH416 Assignment 4 Graphs\humidity")
+plt.savefig(r"C:\Users\patri\OneDrive\Desktop\ERTH416\ERTH416\Assignment 4\humidity")
 plt.show()
 
 ax4 = plt.subplot()
@@ -124,5 +139,22 @@ plt.xticks(rotation=45)
 plt.xlim(starting_time - timedelta(seconds=1), starting_time + timedelta(seconds=30.8571428571 * 699) -
          timedelta(seconds=1))
 plt.legend()
-plt.savefig(r"C:\Users\patri\OneDrive\Desktop\ERTH416 Assignment 4 Graphs\pressure")
+plt.savefig(r"C:\Users\patri\OneDrive\Desktop\ERTH416\ERTH416\Assignment 4\pressure")
+plt.show()
+
+ax5 = plt.subplot()
+plt.title("Particle Matter Concentration Over Time (No Outdoor Smoking Factor)")
+ax5.scatter(time_no_smoking, pm10_concentration_no_smoking, color="blue", s=8, label="PM1.0 Concentration (µg/m^3)")
+ax5.scatter(time_no_smoking, pm25_concentration_no_smoking, color="orange", s=8, label="PM2.5 Concentration (µg/m^3)")
+ax5.scatter(time_no_smoking, pm100_concentration_no_smoking, color="purple", s=8, label="PM10.0 Concentration (µg/m^3)")
+ax5.xaxis.set_major_formatter(mdates.DateFormatter("%H:%M"))
+ax5.xaxis.set_major_locator(mdates.MinuteLocator(interval=30))
+
+plt.xlabel("Time")
+plt.ylabel("PM Concentration (µg/m^3)")
+plt.xticks(rotation=45)
+plt.xlim(starting_time - timedelta(seconds=1), starting_time + timedelta(seconds=30.8571428571 * 699) -
+         timedelta(seconds=1))
+plt.legend()
+plt.savefig(r"C:\Users\patri\OneDrive\Desktop\ERTH416\ERTH416\Assignment 4\pmconcentration")
 plt.show()
