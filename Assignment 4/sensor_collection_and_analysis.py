@@ -94,7 +94,7 @@ plt.xticks(rotation=45)
 plt.xlim(starting_time - timedelta(seconds=1), starting_time + timedelta(seconds=30.8571428571 * 699) -
          timedelta(seconds=1))
 plt.legend()
-plt.savefig(r"C:\Users\patri\OneDrive\Desktop\ERTH416\ERTH416\Assignment 4\pmconcentration_no_smoking")
+plt.savefig(r"C:\Users\patri\OneDrive\Desktop\ERTH416\ERTH416\Assignment 4\pmconcentration")
 plt.show()
 
 ax2 = plt.subplot()
@@ -156,5 +156,5 @@ plt.xticks(rotation=45)
 plt.xlim(starting_time - timedelta(seconds=1), starting_time + timedelta(seconds=30.8571428571 * 699) -
          timedelta(seconds=1))
 plt.legend()
-plt.savefig(r"C:\Users\patri\OneDrive\Desktop\ERTH416\ERTH416\Assignment 4\pmconcentration")
+plt.savefig(r"C:\Users\patri\OneDrive\Desktop\ERTH416\ERTH416\Assignment 4\pmconcentration_no_smoking")
 plt.show()
