@@ -143,7 +143,7 @@ plt.savefig(r"C:\Users\patri\OneDrive\Desktop\ERTH416\ERTH416\Assignment 4\press
 plt.show()
 
 ax5 = plt.subplot()
-plt.title("Particle Matter Concentration Over Time (No Outdoor Smoking Factor)")
+plt.title("Particle Matter Concentration Over Time (Smoking Filtered)")
 ax5.scatter(time_no_smoking, pm10_concentration_no_smoking, color="blue", s=8, label="PM1.0 Concentration (µg/m^3)")
 ax5.scatter(time_no_smoking, pm25_concentration_no_smoking, color="orange", s=8, label="PM2.5 Concentration (µg/m^3)")
 ax5.scatter(time_no_smoking, pm100_concentration_no_smoking, color="purple", s=8, label="PM10.0 Concentration (µg/m^3)")
