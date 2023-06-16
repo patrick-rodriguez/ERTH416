@@ -2,10 +2,7 @@ import mysql.connector
 from datetime import date
 
 database = mysql.connector.connect(
-    host="ix-dev.cs.uoregon.edu",
-    port=3513,
-    user="prodrig2",
-    password="irodmario@2001"
+
 )
 
 cursor = database.cursor()
